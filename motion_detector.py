@@ -14,6 +14,12 @@ row1 = [0]*size
 for z in range(size):
     row1[z] = z+1
 row2 = [0]*size
+
+bool1 = [0]*size
+for z in range(size):
+    bool1[z] = z+1
+bool2 = [0]*size
+
 class MotionDetector:
     LAPLACIAN = 1.4
     DETECT_DELAY = 1
@@ -103,12 +109,13 @@ class MotionDetector:
                 row2Prev = row2
                 if color == COLOR_RED:
                     row2[index] = "full"
+                    bool2[index] = 1
                     #if row2[index] == row2Prev[index]:
                     #    print(row2)
                 elif color == COLOR_GREEN:
                     row2[index] = "empty"
-                a = np.array(row1)
-                b = np.array(row2)
+                    bool2[index] = 0
+                array = [bool1,bool2]
                 table = [['Parking Space #','Status']]
                 print(tabulate(table))
                 for i in range(size):
@@ -125,6 +132,7 @@ class MotionDetector:
                 with open('Output_Data/Output_raw.txt','r') as r:
                     out = r.read()
                     empty = out.count("empty")
+                    full = size-empty
                 print(f"Number of empty spots:  {empty}")
                 print(f"Number of full spots:   {size-empty}")
                 with open('Output_Data/Output_formatted.txt','a') as f:
@@ -132,7 +140,12 @@ class MotionDetector:
                     f.write(f"Number of full spots:   {size-empty}\n")
                 with open('Output_Data/Output_raw.txt','a') as f:
                     f.write(f"\n{empty}\n")
-                    f.write(f"{size-empty}\n")
+                    f.write(f"{full}\n")
+                with open('Output_Data/Array.txt','w') as f:
+                    f.write(f"{array[0]}\n")
+                    f.write(f"{array[1]}\n")
+                    f.write(f"{empty}\n")
+                    f.write(f"{full}\n")
 
                 
                 #row1 = np.array([index])
