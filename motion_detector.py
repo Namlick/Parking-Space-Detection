@@ -3,8 +3,17 @@ import numpy as np
 import logging
 from drawing_utils import draw_contours
 from colors import COLOR_GREEN, COLOR_WHITE, COLOR_RED
+from tabulate import tabulate
+from time import sleep
 
+# number of parking spaces
+size = 4
+##########################
 
+row1 = [0]*size
+for z in range(size):
+    row1[z] = z+1
+row2 = [0]*size
 class MotionDetector:
     LAPLACIAN = 1.4
     DETECT_DELAY = 1
@@ -90,6 +99,42 @@ class MotionDetector:
 
                 color = COLOR_GREEN if statuses[index] else COLOR_RED
                 draw_contours(new_frame, coordinates, str(p["id"] + 1), COLOR_WHITE, color)
+                
+                row2Prev = row2
+                if color == COLOR_RED:
+                    row2[index] = 1
+                    #if row2[index] == row2Prev[index]:
+                    #    print(row2)
+                elif color == COLOR_GREEN:
+                    row2[index] = 0
+                a = np.array(row1)
+                b = np.array(row2)
+                table = [['Parking Space #','Status']]
+                print(tabulate(table))
+                for i in range(size):
+                    print(f"      {row1[i]}            {row2[i]}")
+                #print(row2)
+                with open('Output_formatted.txt','w') as f:
+                    f.write(tabulate(table))
+                    f.write('\n')
+                    for i in range(size):
+                        f.write(f"      {row1[i]}            {row2[i]}\n")
+                with open('Output_raw.txt','w') as f:
+                    for i in range(size):
+                        f.write(f"{row1[i]} {row2[i]}\n")
+                
+                #row1 = np.array([index])
+                #row2 = np.array([0*index])
+                #row2[index] = color
+                #if color == COLOR_GREEN:
+                #    print(f"{index} is empty")
+                #    row2[index] = "0"
+                #elif color == COLOR_RED:
+                #    print(f"{index} is full")
+                #    row2[index] = "1"
+                #print(f"{row1}  {row2}")
+                #print("---------------")
+
 
             open_cv.imshow(str(self.video), new_frame)
             k = open_cv.waitKey(1)
