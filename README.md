@@ -4,6 +4,6 @@
 
   -  pip3 install -r requirements.txt
 
-- Run the main.py script to start the detection. 
+- Run the main2.py script to start the detection. 
 
 - There are several sample images and videos included. 
