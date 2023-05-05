@@ -7,7 +7,7 @@ from tabulate import tabulate
 from time import sleep
 
 # number of parking spaces
-size = 4
+size = 19
 ##########################
 
 row1 = [0]*size
@@ -122,6 +122,18 @@ class MotionDetector:
                 with open('Output_Data/Output_raw.txt','w') as f:
                     for i in range(size):
                         f.write(f"{row1[i]} {row2[i]}\n")
+                with open('Output_Data/Output_raw.txt','r') as r:
+                    out = r.read()
+                    empty = out.count("empty")
+                print(f"Number of empty spots:  {empty}")
+                print(f"Number of full spots:   {size-empty}")
+                with open('Output_Data/Output_formatted.txt','a') as f:
+                    f.write(f"\nNumber of empty spots:  {empty}\n")
+                    f.write(f"Number of full spots:   {size-empty}\n")
+                with open('Output_Data/Output_raw.txt','a') as f:
+                    f.write(f"\n{empty}\n")
+                    f.write(f"{size-empty}\n")
+
                 
                 #row1 = np.array([index])
                 #row2 = np.array([0*index])
