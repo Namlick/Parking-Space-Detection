@@ -114,12 +114,12 @@ class MotionDetector:
                 for i in range(size):
                     print(f"      {row1[i]}            {row2[i]}")
                 #print(row2)
-                with open('Output_formatted.txt','w') as f:
+                with open('Output_Data/Output_formatted.txt','w') as f:
                     f.write(tabulate(table))
                     f.write('\n')
                     for i in range(size):
                         f.write(f"      {row1[i]}            {row2[i]}\n")
-                with open('Output_raw.txt','w') as f:
+                with open('Output_Data/Output_raw.txt','w') as f:
                     for i in range(size):
                         f.write(f"{row1[i]} {row2[i]}\n")
                 
