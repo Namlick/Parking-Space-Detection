@@ -102,23 +102,23 @@ class MotionDetector:
                 
                 row2Prev = row2
                 if color == COLOR_RED:
-                    row2[index] = 1
+                    row2[index] = "full"
                     #if row2[index] == row2Prev[index]:
                     #    print(row2)
                 elif color == COLOR_GREEN:
-                    row2[index] = 0
+                    row2[index] = "empty"
                 a = np.array(row1)
                 b = np.array(row2)
                 table = [['Parking Space #','Status']]
                 print(tabulate(table))
                 for i in range(size):
-                    print(f"      {row1[i]}            {row2[i]}")
+                    print(f"      {row1[i]}          {row2[i]}")
                 #print(row2)
                 with open('Output_Data/Output_formatted.txt','w') as f:
                     f.write(tabulate(table))
                     f.write('\n')
                     for i in range(size):
-                        f.write(f"      {row1[i]}            {row2[i]}\n")
+                        f.write(f"      {row1[i]}          {row2[i]}\n")
                 with open('Output_Data/Output_raw.txt','w') as f:
                     for i in range(size):
                         f.write(f"{row1[i]} {row2[i]}\n")
