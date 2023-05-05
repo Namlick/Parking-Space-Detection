@@ -1,0 +1,25 @@
+---------------  ------
+Parking Space #  Status
+---------------  ------
+      1          full
+      2          full
+      3          empty
+      4          full
+      5          empty
+      6          full
+      7          full
+      8          full
+      9          full
+      10          full
+      11          full
+      12          empty
+      13          full
+      14          full
+      15          empty
+      16          full
+      17          full
+      18          empty
+      19          empty
+
+Number of empty spots:  6
+Number of full spots:   13
