@@ -25,9 +25,8 @@ class CoordinatesGenerator:
     def generate(self):
         while True:
             open_cv.imshow(self.caption, self.image)
-            key = open_cv.waitKey(0)
 
-            if key == CoordinatesGenerator.KEY_RESET:
+            if (key := open_cv.waitKey(0)) == CoordinatesGenerator.KEY_RESET:
                 self.image = self.image.copy()
             elif key == CoordinatesGenerator.KEY_QUIT:
                 break

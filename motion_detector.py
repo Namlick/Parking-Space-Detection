@@ -162,8 +162,7 @@ class MotionDetector:
 
 
             open_cv.imshow(str(self.video), new_frame)
-            k = open_cv.waitKey(1)
-            if k == ord("q"):
+            if (k := open_cv.waitKey(1)) == ord("q"):
                 break
         capture.release()
         open_cv.destroyAllWindows()
