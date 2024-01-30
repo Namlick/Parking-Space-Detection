@@ -15,7 +15,7 @@ def main():
     start_frame = 10  #400
     video_file = "videos/parking_lot_1.mp4"
 
-    if image_file is not None:
+    if image_file != None:
         with open(data_file, "w+") as points:
             generator = CoordinatesGenerator(image_file, points, COLOR_RED)
             generator.generate()
